@@ -18,5 +18,8 @@ export const NODEMAILER_HOST: string = process.env.NODEMAILER_HOST || ''
 export const NODEMAILER_USER: string = process.env.NODEMAILER_USER || ''
 export const NODEMAILER_PASS: string = process.env.NODEMAILER_PASS || ''
 export const NODEMAILER_PORT: number = Number(process.env.NODEMAILER_PORT)
-export const NODEMAILER_SECURE: boolean = Boolean(process.env.NODEMAILER_SECURE)
+export const NODEMAILER_SECURE: boolean = Boolean(process.env.NODEMAILER_SECURE) || false
 export const EMAIL_FROM: string = process.env.EMAIL_FROM || ""
+
+// FRONT END
+export const FE_DOMAIN: string = process.env.FE_DOMAIN

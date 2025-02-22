@@ -8,6 +8,10 @@ export const createTodo = Joi.object<CreateTodo>({
     status: Joi.string().valid(...Object.values(Status)),
 })
 
+export const getTodoStatus = Joi.object<GetTodo>({
+    dueDate: Joi.date().optional(),
+})
+
 export const getTodo = Joi.object<GetTodo>({
     search: Joi.string().optional(),
     status: Joi.string().valid(...Object.values(Status)).optional(),

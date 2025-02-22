@@ -11,6 +11,15 @@ export const createTodo = async (req: Request, res: Response, next: NextFunction
     }
 }
 
+export const getTodStatus = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const response = await todoServices.getTodoStatus(req.userSession, req.query)
+        resSend(res, 200, "Todo status retrieved successfully", response)
+    } catch (error) {
+        next(error)
+    }
+}
+
 export const getTodo = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const response = await todoServices.getTodo(req.userSession, req.query)

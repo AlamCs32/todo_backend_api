@@ -30,6 +30,78 @@ export const createTodo = async (userSession: UserSessionData, body: Partial<Cre
     });
 };
 
+// export const getTodStatus = async (userSession: UserSessionData, query: Partial<GetTodo>) => {
+//     const { userId } = userSession;
+//     const { dueDate } = query;
+
+//     const formattedDueDate = dueDate ? moment(dueDate).format("YYYY-MM-DD") : null;
+
+//     const statusCounts = await prisma.$queryRaw`
+//     SELECT 
+//         status,
+//         COUNT(*) AS count
+//     FROM Todo
+//     WHERE isActive = true AND userId = ${userId} 
+//     ${formattedDueDate ? prisma.$queryRaw`AND dueDate = ${formattedDueDate}` : prisma.$queryRaw``}
+//     GROUP BY status
+
+//     UNION ALL
+
+//     SELECT 
+//         'dueDate' AS status,
+//         COUNT(*) AS count
+//     FROM Todo
+//     WHERE isActive = true AND userId = ${userId} 
+//     ${formattedDueDate ? prisma.$queryRaw`AND dueDate = ${formattedDueDate}` : prisma.$queryRaw``}
+//     AND dueDate < CURDATE();
+//   `;
+//     return statusCounts
+// }
+
+export const getTodoStatus = async (userSession: UserSessionData, query: Partial<GetTodo>) => {
+    const { userId } = userSession;
+    const { dueDate } = query;
+
+    const status = {
+        totalCounts: 0,
+        completed: 0,
+        pending: 0,
+        dueDate: 0
+    }
+
+    const formattedDueDate = dueDate ? moment(dueDate).format("YYYY-MM-DD") : null;
+
+    const [statusCounts, overdueCount] = await Promise.all([
+        await prisma.todo.groupBy({
+            by: ["status"],
+            where: {
+                userId,
+                isActive: true,
+                ...(formattedDueDate ? { dueDate: formattedDueDate } : {}),
+            },
+            _count: { _all: true },
+        }),
+        await prisma.todo.count({
+            where: {
+                userId,
+                isActive: true,
+                dueDate: { lt: moment().format("YYYY-MM-DD") },
+                ...(formattedDueDate ? { dueDate: formattedDueDate } : {}),
+            },
+        })
+    ])
+
+    statusCounts.forEach(item => {
+        status[item.status.toLowerCase()] = item._count._all
+        status.totalCounts += item._count._all
+    })
+
+    status.dueDate = overdueCount
+
+    return status
+};
+
+
 export const getTodo = async (userSession: UserSessionData, query: Partial<GetTodo>) => {
     const { userId } = userSession;
     const { search, dueDate, sortBy = "updatedAt", sortType = "desc", status, pageNo = 1, pageSize = 10 } = query;
