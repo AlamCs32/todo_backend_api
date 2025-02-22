@@ -160,7 +160,7 @@ This project is licensed under the MIT License.
 
 ### 📧 Contact
 
-For queries, reach out at: **your.email@example.com**
+For queries, reach out at: **skmdmehfoozalam@gmail.com**
 
 ---
 
