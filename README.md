@@ -6,7 +6,7 @@ This is a **Full-Stack Todo Application** backend built using **Node.js**, **Exp
 
 - User authentication (JWT-based)
 - CRUD operations for todos
-- Role-based access control (RBAC)
+- Authentication And Authorizatin
 - Swagger API documentation
 - Prisma ORM for database management
 - Middleware for security (Helmet, CORS)
