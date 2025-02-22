@@ -123,7 +123,6 @@ http://localhost:5000/api-docs
 
 ```
 📂 todo-api
-│-- 📂 prisma               # Prisma Schema
 │-- 📂 src
 │   │-- 📂 controllers       # API Controllers
 │   │-- 📂 middlewares       # Express Middleware
