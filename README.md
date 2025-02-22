@@ -137,8 +137,8 @@ http://localhost:5000/api-docs
 │-- 📜 package.json          # Dependencies & Scripts
 │-- 📜 tsconfig.json         # TypeScript Config
 │-- 📜 README.md             # Documentation
+│-- 📜 Todo Application.postman_collection.json # Api Collection
 ```
-
 ---
 
 ## 🤝 Contributing
