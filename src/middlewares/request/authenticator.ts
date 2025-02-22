@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { resSend } from "../response/resSend.js";
-import { JwtService } from "../../utils/jwt.js";
+import * as JwtService from "../../utils/jwt.js";
 
 export const authenticateUser = async (
   req: Request,

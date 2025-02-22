@@ -1,10 +1,7 @@
 import { Request } from "express";
 export interface UserSessionData {
     userId: number;
-    isAdmin?: boolean;
-    scopes?: any[]
-    centerId?: any
-    centerName?: string;
+    role?: string;
     iat?: number;
     exp?: number;
 }
