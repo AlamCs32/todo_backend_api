@@ -18,6 +18,8 @@ export const getTodo = Joi.object<GetTodo>({
     dueDate: Joi.date().optional(),
     sortBy: Joi.string().valid("updatedAt", "createdAt", "dueDate", "title").optional(),
     sortType: Joi.string().valid("desc", "asc").optional(),
+    pageNo: Joi.number().optional(),
+    pageSize: Joi.number().optional(),
 })
 
 export const updateTodo = Joi.object<UpdateTodo>({
@@ -25,4 +27,5 @@ export const updateTodo = Joi.object<UpdateTodo>({
     description: Joi.string(),
     dueDate: Joi.date().required(),
     status: Joi.string().valid(...Object.values(Status)),
+
 })

@@ -72,33 +72,50 @@ router.get("/todo",
         #swagger.parameters['search'] = {
             in: 'query',
             description: 'Search todos by title or description',
-            required: false
+            required: false,
+            example: 'groceries'
         }
         #swagger.parameters['status'] = {
             in: 'query',
-            description: 'Filter todos by status PENDING ,COMPLETED',
-            required: false
+            description: 'Filter todos by status (PENDING, COMPLETED)',
+            required: false,
+            example: 'PENDING'
         }
         #swagger.parameters['dueDate'] = {
             in: 'query',
-            description: 'Filter todos by due date format 2025-02-25',
-            required: false
+            description: 'Filter todos by due date (format: YYYY-MM-DD)',
+            required: false,
+            example: '2025-02-25'
         }
         #swagger.parameters['sortBy'] = {
             in: 'query',
-            description: 'Sort todos by fields updatedAt, createdAt, dueDate, title',
-            required: false
+            description: 'Sort todos by (updatedAt, createdAt, dueDate, title)',
+            required: false,
+            example: 'dueDate'
         }
         #swagger.parameters['sortType'] = {
             in: 'query',
-            description: 'Sort order enum: asc, desc',
-            required: false
+            description: 'Sort order (asc, desc)',
+            required: false,
+            example: 'asc'
         }
-        #swagger.responses[200] = {
-            description: 'Todos fetched successfully'
+        #swagger.parameters['pageNo'] = {
+            in: 'query',
+            description: 'Page number for pagination',
+            required: false,
+            example: 1
         }
+        #swagger.parameters['pageSize'] = {
+            in: 'query',
+            description: 'Number of todos per page',
+            required: false,
+            example: 10
+        }
+        #swagger.responses[200] = { description: 'Todos fetched successfully' }
+        #swagger.responses[400] = { description: 'Invalid request parameters' }
     */
 );
+
 
 router.patch("/todo/:todoId",
     authenticateUser,
