@@ -52,9 +52,8 @@ router.get("/todo/status",
         #swagger.security = [{ "BearerAuth": [] }]
         #swagger.parameters['dueDate'] = {
             in: 'query',
-            description: 'Filter todos by due date',
-            required: false,
-            schema: { type: 'string', format: 'date', example: '2025-02-25' }
+            description: 'Filter todos by due date format 2025-02-25',
+            required: false
         }
     */
 );
@@ -73,32 +72,27 @@ router.get("/todo",
         #swagger.parameters['search'] = {
             in: 'query',
             description: 'Search todos by title or description',
-            required: false,
-            schema: { type: 'string', example: 'groceries' }
+            required: false
         }
         #swagger.parameters['status'] = {
             in: 'query',
-            description: 'Filter todos by status',
-            required: false,
-            schema: { type: 'string', enum: ['PENDING', 'COMPLETED'], example: 'PENDING' }
+            description: 'Filter todos by status PENDING ,COMPLETED',
+            required: false
         }
         #swagger.parameters['dueDate'] = {
             in: 'query',
-            description: 'Filter todos by due date',
-            required: false,
-            schema: { type: 'string', format: 'date', example: '2025-02-25' }
+            description: 'Filter todos by due date format 2025-02-25',
+            required: false
         }
         #swagger.parameters['sortBy'] = {
             in: 'query',
-            description: 'Sort todos by field',
-            required: false,
-            schema: { type: 'string', enum: ['updatedAt', 'createdAt', 'dueDate', 'title'], example: 'dueDate' }
+            description: 'Sort todos by fields updatedAt, createdAt, dueDate, title',
+            required: false
         }
         #swagger.parameters['sortType'] = {
             in: 'query',
-            description: 'Sort order',
-            required: false,
-            schema: { type: 'string', enum: ['asc', 'desc'], example: 'asc' }
+            description: 'Sort order enum: asc, desc',
+            required: false
         }
         #swagger.responses[200] = {
             description: 'Todos fetched successfully'
@@ -118,8 +112,7 @@ router.patch("/todo/:todoId",
         #swagger.parameters['todoId'] = {
             in: 'path',
             description: 'Todo ID to update',
-            required: true,
-            schema: { type: 'integer', example: 1 }
+            required: true
         }
         #swagger.responses[200] = { description: 'Todo status updated successfully' }
         #swagger.responses[404] = { description: 'Todo not found' }
@@ -139,8 +132,7 @@ router.put("/todo/:todoId",
         #swagger.parameters['todoId'] = {
             in: 'path',
             description: 'Todo ID to update',
-            required: true,
-            schema: { type: 'integer', example: 1 }
+            required: true
         }
         #swagger.requestBody = {
             required: true,
@@ -177,8 +169,7 @@ router.delete("/todo/:todoId",
         #swagger.parameters['todoId'] = {
             in: 'path',
             description: 'Todo ID to delete',
-            required: true,
-            schema: { type: 'integer', example: 1 }
+            required: true
         }
         #swagger.responses[200] = { description: 'Todo deleted successfully' }
         #swagger.responses[404] = { description: 'Todo not found' }

@@ -88,13 +88,13 @@ router.post("/login",
     */
 )
 
-router.post("/change-password",
+router.put("/change-password",
     authenticateUser,
     reqValidator(userValidation.changePassword),
     userController.changePassword
     /*
         #swagger.path = '/change-password'
-        #swagger.method = 'post'
+        #swagger.method = 'put'
         #swagger.tags = ['User']
         #swagger.summary = 'Change user password'
         #swagger.description = 'Allows authenticated users to change their password.'
